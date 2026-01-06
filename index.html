@@ -1,0 +1,98 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>X Top Posts</title>
+  <link rel="stylesheet" href="./assets/app.css" />
+</head>
+
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>X Top Posts</h1>
+      <p class="subtitle">Keyword seç, süre seç, sonucu getir. Top 10 skor sıralı listelenir.</p>
+    </header>
+
+    <section class="panel">
+      <h2>Keywords</h2>
+
+      <div class="row">
+        <div class="field">
+          <label for="apiUrl">Vercel Proxy URL</label>
+          <input id="apiUrl" type="url" placeholder="https://YOUR-PROJECT.vercel.app/api/search" autocomplete="off" />
+          <div class="hint">Örnek: https://xxx.vercel.app/api/search</div>
+        </div>
+
+        <div class="field">
+          <label for="token">Bearer Token</label>
+          <input id="token" type="password" placeholder="Token yapıştır" autocomplete="off" />
+          <div class="hint">Tokenı repo içine koyma. Buraya yapıştır.</div>
+        </div>
+      </div>
+
+      <div class="row actions">
+        <button id="btnSelectAll" class="btn btn-secondary" type="button">Hepsini Seç</button>
+        <button id="btnSelectNone" class="btn btn-secondary" type="button">Seçimleri Kaldır</button>
+
+        <div class="spacer"></div>
+
+        <div class="addkw">
+          <input id="kwInput" type="text" placeholder="Keyword ekle (ör: Mourinho)" autocomplete="off" />
+          <button id="btnAddKw" class="btn btn-secondary" type="button">Ekle</button>
+        </div>
+      </div>
+
+      <div id="kwGrid" class="kw-grid" aria-label="Keyword listesi"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Süre</h2>
+      <div class="row">
+        <div class="field small">
+          <label for="hours">Zaman aralığı</label>
+          <select id="hours">
+            <option value="1">Son 1 saat</option>
+            <option value="3">Son 3 saat</option>
+            <option value="6">Son 6 saat</option>
+            <option value="12">Son 12 saat</option>
+            <option value="24">Son 24 saat</option>
+          </select>
+        </div>
+
+        <div class="field small">
+          <label for="lang">Dil</label>
+          <select id="lang">
+            <option value="tr">tr</option>
+            <option value="en">en</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row actions">
+        <button id="btnFetch" class="btn btn-primary" type="button">Sonuçları Getir</button>
+        <button id="btnClear" class="btn btn-secondary" type="button">Temizle</button>
+        <div class="spacer"></div>
+        <div id="status" class="status" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="results-header">
+        <h2>Top 10 Gündem</h2>
+        <div id="meta" class="meta"></div>
+      </div>
+      <div id="results" class="results"></div>
+    </section>
+
+    <footer class="footer">
+      <div class="hint">
+        Not: Bu sayfa X API’ye direkt gitmez. Vercel proxy URL üzerinden çağrı yapar.
+      </div>
+    </footer>
+  </main>
+
+  <script src="./assets/app.js"></script>
+</body>
+</html>
